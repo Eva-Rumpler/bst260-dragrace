@@ -7,3 +7,10 @@ navbar:
       href: index.html
     - text: "Data extraction and wrangling"
       href: data.html
+    - text: "Prediction models"
+      href: model.html
+    - text: "Visualization"
+      href: visualization.html
+    - text: "Conclusion"
+      href: conclusion.html
+      

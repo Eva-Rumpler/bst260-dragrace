@@ -1,0 +1,19 @@
+---
+title: "Conclusion"
+---
+
+In this final project, I have extracted and cleaned data related to the American reality tv show RuPaul's Drag Race from 3 different sources. I have then created two prediction models for two outcomes: winning the competition and winning the Miss Congeniality title. Both models are decent accuracy, but the second model (predicting the winner of the competition) was better able to predict the outcome. Overall, I found it interesting to see that in each model only one variable was significantly associated with the outcome (number of highs and wins for the first model, winning the Snatch Game episode for the second model). This is interesting and somewhat brings to the discussion in the fandom by showing that not one signle factor is predictive of winning either title (the whole competititon or Miss Congeniality). I also found interesting to look at which competitors were predicted to win their seasons by the model despite not having truly won it:Manila Luzon, Alaska and Rosé. For example Alaska then moved to participating in the competition again in the "All Stars" (a series with competitors that have previously participated in RuPaul's Drag Race) and winning that competition. In addition, I have created alluvial plots for each of the 14 seasons of the show, showing the trajectory of each candidate in an efficient representation. 
+The models were somewhat successful but could be better. Consideration of another model that is able to account for the rarity of the outcome, or inclusion of more data would be useful. For example although I extracted data on Twitter following, I was not able to obtain that data on all the participants at the time of their entry in the show (Twitter was not as popular when the first season aired in 2009) and I did not want to reduce my sample size too much.
+It may be that the model could be improved, or that it is not possible to predict the winner of either of this titles, as this competition is above all else a human adventure that rewards creativity, uniqueness and talent. 
+
+
+
+
+
+# References
+
+Data source 1: R package dragracer https://cran.r-project.org/web/packages/dragracer/index.html
+
+Data source 2: No Key No Shade API https://drag-race-api.readme.io/docs`
+
+Data source 3: RuPaul-Predict-A-Looza Tables for all contestant and social media  https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=516773740 and https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=1915800778

@@ -1,0 +1,51 @@
+---
+title: "Visualization of participant's trajectories across seasons"
+---
+
+I addition to the regression model, I decided to make plots for each season representing the performance of each candidate. Those can be found in Figures 2 to 15 below. 
+I picked alluvial plots due to their visual appeal, because they are an efficient way to show the trajectory of multiple participants at the same time and because I had never made one and wanted to learn. 
+
+I find these plots interesting as they allow the reader to get a grasp of a queen's performance in a glance. For example, Bianca Del Rio, a participant in season 6 (represented in orange on Figure 7) is notorious for having performed extremely well on her season. She never fell in the bottom, was safe only 3 times and ended up winning the season. This is easy to visualize on the alluvial plot.
+
+### Figure 2
+![](./plots/Figure_S1.png)
+
+### Figure 3
+![](./plots/Figure_S2.png)
+
+### Figure 4
+![](./plots/Figure_S3.png)
+
+### Figure 5
+![](./plots/Figure_S4.png)
+
+### Figure 6
+![](./plots/Figure_S5.png)
+
+### Figure 7
+![](./plots/Figure_S6.png)
+
+### Figure 8
+![](./plots/Figure_S7.png)
+
+### Figure 9
+![](./plots/Figure_S8.png)
+
+### Figure 10
+![](./plots/Figure_S9.png)
+
+### Figure 11
+![](./plots/Figure_S10.png)
+
+### Figure 12
+![](./plots/Figure_S11.png)
+
+### Figure 13
+![](./plots/Figure_S12.png)
+
+### Figure 14
+![](./plots/Figure_S13.png)
+
+### Figure 15
+![](./plots/Figure_S14.png)
+

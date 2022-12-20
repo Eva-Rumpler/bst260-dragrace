@@ -130,7 +130,7 @@ Data source 1: R package dragracer https://cran.r-project.org/web/packages/dragr
 
 Data source 2: No Key No Shade API https://drag-race-api.readme.io/docs`
 
-)Data source 3: RuPaul-Predict-A-Looza Tables for all contestant and social media  https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=516773740 and https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=1915800778
+Data source 3: RuPaul-Predict-A-Looza Tables for all contestant and social media  https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=516773740 and https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=1915800778
 
 <!-- \vspace{-1em} -->
 
