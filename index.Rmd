@@ -58,4 +58,14 @@ trajectory of each competitor in each of the seasons of the competition.
 I meant those as a way to visually assess the performance of each of the
 contestant, as well as the global picture of each season. I picked
 alluvial plots, are those are both visually appealing and easy to
-comprehend. Those 14 plots can be found in the Appendix below.
+comprehend.
+
+**Figure 1A**
+![](plots/Figure_1.png)
+
+**Figure 1B**
+![](plots/Figure_1B.png)
+
+**Figure 1C**
+![](plots/Figure_1C.png)
+
