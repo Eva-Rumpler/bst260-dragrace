@@ -1,87 +1,191 @@
----
-title: "BST 260 Project: RuPaul's Drag Race prediction models and alluvial plots" 
-author: "Eva Rumpler"
-date: "2022-12-15"
-#geometry: margin=2cm
-header-includes:
-  - \usepackage{amsfonts}
-  - \usepackage{amsmath}
-  - \usepackage{float}
-  - \floatplacement{figure}{H}
-output: github_document
-fontsize: 7pt
-fig_caption: yes
-always_allow_html: true
----
+BST 260 Project: RuPaul’s Drag Race prediction models and alluvial plots
+================
+Eva Rumpler
+2022-12-15
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-library(knitr)
-library(kableExtra)
-```
+
+
+
+
+
+
+
 
 <!-- \newpage -->
 
-# Introduction 
+# Introduction
 
+<!-- # - \usepackage{float} --> <!-- # - \floatplacement{figure}{H} -->
 
-  <!-- # - \usepackage{float} -->
-  <!-- # - \floatplacement{figure}{H} -->
+This projects aims at investigating the predictive value of outcomes
+from the award-winning TV show RuPaul’s Drag Race. RuPaul’s Drag Race is
+an American reality competition television series that first aired in
+2009 and currently counts 14 seasons. The original American show has
+given rise to spin-offs such as RuPaul’s Drag Race All Stars, and
+international versions such as in Canada, UK, France, Thailand, Holland,
+Spain, Australia/New Zealand, and Italy. This project will focus
+specifically on the original American version of the show, and including
+all seasons that has aired to date, namely seasons 1 through 14.
 
-This projects aims at investigating the predictive value of outcomes from the award-winning TV show RuPaul's Drag Race. RuPaul's Drag Race is an American reality competition television series that first aired in 2009 and currently counts 14 seasons. The original American show has given rise to  spin-offs such as RuPaul's Drag Race All Stars, and international versions such as in Canada, UK, France, Thailand, Holland, Spain, Australia/New Zealand, and Italy. This project will focus specifically on the original American version of the show, and including all seasons that has aired to date, namely seasons 1 through 14. 
+In each iteration of the competition, 9 to 16 contestant participate in
+weekly challenges assessing their drag queen qualities. Contestants are
+called “queens”, which is short for “drag queens” or drag performers.
+They are eliminated one by one until a winner is declared and earns the
+title of “America’s Next Drag Superstar”. The challenges include
+designing, sewing, dancing, singing, performing lip-synchs, acting and
+comedy.
 
-In each iteration of the competition, 9 to 16 contestant participate in weekly challenges assessing their drag queen qualities. Contestants are called "queens", which is short for "drag queens" or drag performers.  They are eliminated one by one until a winner is declared and earns the title of "America's Next Drag Superstar". The challenges include designing, sewing, dancing, singing, performing lip-synchs, acting and comedy. 
+The worldwide community of fans of the show are very active online. A
+part of the online discussions of the show include discussions on
+whether the winner of particular titles can be predicted based on some
+specific factors. There is for example a very wide spread belief that
+winning the fan-favorite “Snatch Game” challenge is a great predictor
+for winning the overall competition. This is supported by the wins from
+Jinkx Monsoon, Bob the Drag Queen, Aquaria, and Gigi Goode in seasons 5,
+8, 10, 12. Another example that is frequently mentioned on the show is
+the supposed superiority of contestants who are from New York City. The
+aim of this project is to assess whether some of these variable are
+actually predictive of one of two outcomes: a) winning the competition,
+or b) being crowned “Miss congeniality”, a honorary title given to one
+of the participants who showed the most friendly and positive spirits
+and behavior during the competition. I choose exposure variables to
+include some of the most frequently discussed factors in the fan
+community, as well as socio-demographic factors that may affect the
+performance. The exposure variables I will consider are: age of
+contestant when the show aired, the homestate of the participant,
+whether the contestant participate in the final episode (the finale),
+their overall rank, whether the contestant won the “Snatch Game” comedy
+impersonation challenge, and their number of mini-challenge wins, number
+of times winning a maxi-challenge, number of times ranking in the ‘win
+,’win or high’, ‘safe’, ‘low or bottom’, and ‘bottom’ categories of the
+weekly maxi-challenge. I have made Figure 1A to illustrate how the
+ranking variables are distributed across the 184 queens. I have this
+information on 184 queens, which participated in 14 seasons. I have
+additionally generated Figures 1B and 1C to show the distribution of age
+and home state across participants and seasons. I decided to use a
+logistic regression on each of the two outcomes, as those are binary
+outcomes (winner yes/no, and miss congeniality yes/no). Then, I
+additionally construct a predictive model for both outcomes.
 
-The worldwide community of fans of the show are very active online. A part of the online discussions of the show include discussions on whether the winner of particular titles can be predicted based on some specific factors. There is for example a very wide spread belief that winning the fan-favorite "Snatch Game" challenge is a great predictor for winning the overall competition. This is supported by the wins from Jinkx Monsoon, Bob the Drag Queen, Aquaria, and Gigi Goode in seasons 5, 8, 10, 12. Another example that is frequently mentioned on the show is the supposed superiority of contestants who are from New York City. 
-The aim of this project is to assess whether some of these variable are actually predictive of one of two outcomes: a) winning the competition, or b) being crowned "Miss congeniality", a honorary title given to one of the participants who showed the most friendly and positive spirits and behavior during the competition. I choose exposure variables to include some of the most frequently discussed factors in the fan community, as well as socio-demographic factors that may affect the performance. The exposure variables I will consider are: age of contestant when the show aired, the homestate of the participant, whether the contestant participate in the final episode (the finale), their overall rank, whether the contestant won the "Snatch Game" comedy impersonation challenge, and their number of mini-challenge wins, number of times winning a maxi-challenge, number of times ranking in the 'win ,'win or high', 'safe', 'low or bottom', and 'bottom' categories of the weekly maxi-challenge. I have made Figure 1A to illustrate how the ranking variables are distributed across the 184 queens. I have this information on 184 queens, which participated in 14 seasons. I have additionally generated Figures 1B and 1C to show the distribution of age and home state across participants and seasons. I decided to use a logistic regression on each of the two outcomes, as those are binary outcomes (winner yes/no, and miss congeniality yes/no). Then, I additionally construct a predictive model for both outcomes.
+I thought that added value could be brought by making efficient
+visualization of some of the data. I decided to make plots showing the
+trajectory of each competitor in each of the seasons of the competition.
+I meant those as a way to visually assess the performance of each of the
+contestant, as well as the global picture of each season. I picked
+alluvial plots, are those are both visually appealing and easy to
+comprehend. Those 14 plots can be found in the Appendix below.
 
-I thought that added value could be brought by making efficient visualization of some of the data. I decided to make plots showing the trajectory of each competitor in each of the seasons of the competition. I meant those as a way to visually assess the performance of each of the contestant, as well as the global picture of each season. I picked alluvial plots, are those are both visually appealing and easy to comprehend. Those 14 plots can be found in the Appendix below. 
-
-
-# Results 
+# Results
 
 ## Data extraction and wrangling
 
-In order to conduct this project, I had to extract information on 14 seasons and the performances of 184 queens. Although some datasets are available in packages and online, I had to extract information from 3 different data sources and combine them in a usable clean dataset. 
+In order to conduct this project, I had to extract information on 14
+seasons and the performances of 184 queens. Although some datasets are
+available in packages and online, I had to extract information from 3
+different data sources and combine them in a usable clean dataset.
 
-My first data source is an R package called dragracer. The package contains three datasets. rpdr_ep contains episode-level data for all available seasons, such as observations about when the episode aired, the number of queens in the episode, mini-challenge winners, who appeared in the bottom for a given episode, and who was sent home. rpdr_contestants is a data frame of contestant-level information, including the contestant’s age, purported date of birth, hometown, and how they fared across all episodes in their particular season. rpdr_contep is episode-contestant-level data about how each contestant fared in a particular episode in which they were. For my project, I have extracted and combined information from two datasets: rpdr_contep and rpdr_contestants.
+My first data source is an R package called dragracer. The package
+contains three datasets. rpdr_ep contains episode-level data for all
+available seasons, such as observations about when the episode aired,
+the number of queens in the episode, mini-challenge winners, who
+appeared in the bottom for a given episode, and who was sent home.
+rpdr_contestants is a data frame of contestant-level information,
+including the contestant’s age, purported date of birth, hometown, and
+how they fared across all episodes in their particular season.
+rpdr_contep is episode-contestant-level data about how each contestant
+fared in a particular episode in which they were. For my project, I have
+extracted and combined information from two datasets: rpdr_contep and
+rpdr_contestants.
 
-The second data source I have investigated is the "No key no shade" API, which also contains information on queens, seasons and episodes. I explored this option (see code below), but then decided against using it in my final dataset because the information on the three most recent seasons was missing and I did not want to reduce the size of my sample.
+The second data source I have investigated is the “No key no shade” API,
+which also contains information on queens, seasons and episodes. I
+explored this option (see code below), but then decided against using it
+in my final dataset because the information on the three most recent
+seasons was missing and I did not want to reduce the size of my sample.
 
-The third data source I used is the RuPaul-Predict-A-Looza Tables. I extracted data from google sheets available online. I extracted two different datasets. all_contestant, which contains information on contestant's names, seasons, outcome, and instagram and twitter handles. all_social_media contains information on number of twitter and intagram followers at numerous time points for each of the queens. I decided to only consider the number of twitter followers at the time the season started airing, as not to confound my results by including followers that may have been accured after the outcome took place. I thus filtered out the number of followers on the month of season airing, and joined this dataset with the all_contestant dataset that contains the contestant's names.
-The dataset all_contestant from the third source is somewhat redundant with the rpdr_contestants dataset from the dirst data source, but the naming of the contestants is not perfectly identical, so I had to do some wrangling to be able to join the two different datasources.
+The third data source I used is the RuPaul-Predict-A-Looza Tables. I
+extracted data from google sheets available online. I extracted two
+different datasets. all_contestant, which contains information on
+contestant’s names, seasons, outcome, and instagram and twitter handles.
+all_social_media contains information on number of twitter and intagram
+followers at numerous time points for each of the queens. I decided to
+only consider the number of twitter followers at the time the season
+started airing, as not to confound my results by including followers
+that may have been accured after the outcome took place. I thus filtered
+out the number of followers on the month of season airing, and joined
+this dataset with the all_contestant dataset that contains the
+contestant’s names. The dataset all_contestant from the third source is
+somewhat redundant with the rpdr_contestants dataset from the dirst data
+source, but the naming of the contestants is not perfectly identical, so
+I had to do some wrangling to be able to join the two different
+datasources.
 
-Overall, I extracted information from 4 different datasets and joined them together. The top rows of each of these 4 datasets is shown in Tables 1 to 4 in the Appendix. The top 5 rows of the cleaned dataset that I obtained at the end of the data wrangling is in Table 6 in the Appendix. It is tidy with one row per contestant and each column containing each of the variables that I am interested in for my analyses.
-
+Overall, I extracted information from 4 different datasets and joined
+them together. The top rows of each of these 4 datasets is shown in
+Tables 1 to 4 in the Appendix. The top 5 rows of the cleaned dataset
+that I obtained at the end of the data wrangling is in Table 6 in the
+Appendix. It is tidy with one row per contestant and each column
+containing each of the variables that I am interested in for my
+analyses.
 
 ## Prediction models
 
-I considered two different binary outcomes. The first is being crowned "Miss Congeniality", and the second is winning the competition. 
+I considered two different binary outcomes. The first is being crowned
+“Miss Congeniality”, and the second is winning the competition.
 
+**Model 1: Logistic Regression for the probability of winning the Miss
+Congeniality title**
 
-**Model 1: Logistic Regression for the probability of winning the Miss Congeniality title**
-
-Four models were developed to examine the probability of winning the Miss Congenialty title. Model 1 contained only demographic variables _age_ and _homestate_. Model 2 additionally contained _snatchgame_ (binary variable representing winning the Snatch Game episode) and _minichalw_ (continuous variable counting number of mini-challenge wins). In addition to the variables in Model 2, Model 3 additionally included the _rank_ variable (final rank in the competition). In addition to the variables in Model 2, Model 4 additionally contained the variables representing number of times ranking in each of the maxi challenges outcomes ( _nwin_, _nhighwin_, _nbot_, _nlowbot_, _nsafe_). In addition to the variables in Model 2, Model 5 additionally contains _nwin_ and _nhighwin_. I compared Accuracy and AIC to determine the final model. Model 4 had the lowest AIC and comparable Accuracy to the other models (AIC: 143.88 and Accuracy : 0.9344) so I selected it as the final model. 
-The only covariate that was found to be significantly associated withe the outcome in this model was nhighwin (p-value: 0.028). 
-I also ran a prediciton model that was able to predict only 2 of the 14 winners of miss congeniality (Nina Flowers and Yara Sofia) (specificity 0.14) but did not predict any non-winners to obtain the title (sensitivity 1.00).
+Four models were developed to examine the probability of winning the
+Miss Congenialty title. Model 1 contained only demographic variables
+*age* and *homestate*. Model 2 additionally contained *snatchgame*
+(binary variable representing winning the Snatch Game episode) and
+*minichalw* (continuous variable counting number of mini-challenge
+wins). In addition to the variables in Model 2, Model 3 additionally
+included the *rank* variable (final rank in the competition). In
+addition to the variables in Model 2, Model 4 additionally contained the
+variables representing number of times ranking in each of the maxi
+challenges outcomes ( *nwin*, *nhighwin*, *nbot*, *nlowbot*, *nsafe*).
+In addition to the variables in Model 2, Model 5 additionally contains
+*nwin* and *nhighwin*. I compared Accuracy and AIC to determine the
+final model. Model 4 had the lowest AIC and comparable Accuracy to the
+other models (AIC: 143.88 and Accuracy : 0.9344) so I selected it as the
+final model. The only covariate that was found to be significantly
+associated withe the outcome in this model was nhighwin (p-value:
+0.028). I also ran a prediciton model that was able to predict only 2 of
+the 14 winners of miss congeniality (Nina Flowers and Yara Sofia)
+(specificity 0.14) but did not predict any non-winners to obtain the
+title (sensitivity 1.00).
 
 <!-- $$ -->
 <!-- \begin{aligned} -->
 <!-- logit(missw=1) &= \beta_0 + \beta_1*age + \beta_2*snatchgame + \beta_3*minichalw + \beta_4*nwin + \beta_5*nhighwin + \beta_i*homestate_i \\ -->
 <!-- \end{aligned} -->
 <!-- $$ -->
-
 <!-- $$ -->
 <!-- \begin{aligned} -->
 <!-- P(missw=1) &= e^(\beta_0 + \beta_1*age + \beta_2*homestate + \beta_3*snatchgame + \beta_4*minichalw + \beta_5*nwin + \beta_6*nhighwin) / 1+e^(\beta_0 + \beta_1*age + \beta_2*homestate + \beta_3*snatchgame + \beta_4*minichalw + \beta_5*nwin + \beta_6*nhighwin) \\ -->
 <!-- \end{aligned} -->
 <!-- $$ -->
 
-**Model 2: Logistic Regression for the probability of winning the competition**
+**Model 2: Logistic Regression for the probability of winning the
+competition**
 
-Three models were developed to examine the probability of winning the competition. Model 1 contained only demographic variables _age_ and _homestate_. Model 2 additionally contained _snatchgame_ (binary variable representing winning the Snatch Game episode) and _minichalw_ (continuous variable counting number of mini-challenge wins). In addition to the variables in Model 2, Model 3 additionally contained the variables representing number of times ranking in each of the maxi challenges outcomes ( _nwin_, _nhighwin_, _nbot_, _nlowbot_, _nsafe_). I compared Accuracy and AIC to determine the final model. Model 3 had the lowest AIC (AIC: 126.69) and an Accuracy of 0.95 and was selected it as the final model. 
-The only covariate that was found to be significantly associated withe the outcome in this model was snatchgame (p-value: 0.0436). 
-I also ran a prediciton model that was able to predict 10 of the 14 winners (specificity 0.71) and did predict 3 winners to obtain the title (Manila Luzon, Alaska, and Rosé) (sensitivity 0.9822). 
+Three models were developed to examine the probability of winning the
+competition. Model 1 contained only demographic variables *age* and
+*homestate*. Model 2 additionally contained *snatchgame* (binary
+variable representing winning the Snatch Game episode) and *minichalw*
+(continuous variable counting number of mini-challenge wins). In
+addition to the variables in Model 2, Model 3 additionally contained the
+variables representing number of times ranking in each of the maxi
+challenges outcomes ( *nwin*, *nhighwin*, *nbot*, *nlowbot*, *nsafe*). I
+compared Accuracy and AIC to determine the final model. Model 3 had the
+lowest AIC (AIC: 126.69) and an Accuracy of 0.95 and was selected it as
+the final model. The only covariate that was found to be significantly
+associated withe the outcome in this model was snatchgame (p-value:
+0.0436). I also ran a prediciton model that was able to predict 10 of
+the 14 winners (specificity 0.71) and did predict 3 winners to obtain
+the title (Manila Luzon, Alaska, and Rosé) (sensitivity 0.9822).
 
 <!-- $$ -->
 <!-- \begin{aligned} -->
@@ -89,13 +193,21 @@ I also ran a prediciton model that was able to predict 10 of the 14 winners (spe
 <!-- \end{aligned} -->
 <!-- $$ -->
 
-## Visualization of participant's trajectories across seasons
+## Visualization of participant’s trajectories across seasons
 
-I addition to the regression model, I decided to make plots for each season representing the performance of each candidate. Those can be found in Figures 2 to 15 in the Appendix below. 
-I picked alluvial plots due to their visual appeal, because they are an efficient way to show the trajectory of multiple participants at the same time and because I had never made one and wanted to learn. 
+I addition to the regression model, I decided to make plots for each
+season representing the performance of each candidate. Those can be
+found in Figures 2 to 15 in the Appendix below. I picked alluvial plots
+due to their visual appeal, because they are an efficient way to show
+the trajectory of multiple participants at the same time and because I
+had never made one and wanted to learn.
 
-I find these plots interesting as they allow the reader to get a grasp of a queen's performance in a glance. For example, Bianca Del Rio, a participant in season 6 (represented in orange on Figure 7) is notorious for having performed extremely well on her season. She never fell in the bottom, was safe only 3 times and ended up winning the season. This is easy to visualize on the alluvial plot. 
-
+I find these plots interesting as they allow the reader to get a grasp
+of a queen’s performance in a glance. For example, Bianca Del Rio, a
+participant in season 6 (represented in orange on Figure 7) is notorious
+for having performed extremely well on her season. She never fell in the
+bottom, was safe only 3 times and ended up winning the season. This is
+easy to visualize on the alluvial plot.
 
 <!-- Results (1 - 2.5 pages of text, 50 pts): -->
 <!-- The text in the results should guide the reader through your analysis and describe what each plot or table is showing, and how it relates to the central question you are trying to ask. Feel free to reiterate key concepts of the methodology and how they help analyze the question or topic. -->
@@ -106,131 +218,1648 @@ I find these plots interesting as they allow the reader to get a grasp of a quee
 <!-- Route 2 -->
 <!-- 6+ key plots or tables illustrating your two major analyses (50 pts) -->
 
-
 # Conclusion
 
-In this final project, I have extracted and cleaned data related to the American reality tv show RuPaul's Drag Race from 3 different sources. I have then created two prediction models for two outcomes: winning the competition and winning the Miss Congeniality title. Both models are decent accuracy, but the second model (predicting the winner of the competition) was better able to predict the outcome. Overall, I found it interesting to see that in each model only one variable was significantly associated with the outcome (number of highs and wins for the first model, winning the Snatch Game episode for the second model). This is interesting and somewhat brings to the discussion in the fandom by showing that not one signle factor is predictive of winning either title (the whole competititon or Miss Congeniality). I also found interesting to look at which competitors were predicted to win their seasons by the model despite not having truly won it:Manila Luzon, Alaska and Rosé. For example Alaska then moved to participating in the competition again in the "All Stars" (a series with competitors that have previously participated in RuPaul's Drag Race) and winning that competition. In addition, I have created alluvial plots for each of the 14 seasons of the show, showing the trajectory of each candidate in an efficient representation. 
-The models were somewhat successful but could be better. Consideration of another model that is able to account for the rarity of the outcome, or inclusion of more data would be useful. For example although I extracted data on Twitter following, I was not able to obtain that data on all the participants at the time of their entry in the show (Twitter was not as popular when the first season aired in 2009) and I did not want to reduce my sample size too much.
-It may be that the model could be improved, or that it is not possible to predict the winner of either of this titles, as this competition is above all else a human adventure that rewards creativity, uniqueness and talent. 
+In this final project, I have extracted and cleaned data related to the
+American reality tv show RuPaul’s Drag Race from 3 different sources. I
+have then created two prediction models for two outcomes: winning the
+competition and winning the Miss Congeniality title. Both models are
+decent accuracy, but the second model (predicting the winner of the
+competition) was better able to predict the outcome. Overall, I found it
+interesting to see that in each model only one variable was
+significantly associated with the outcome (number of highs and wins for
+the first model, winning the Snatch Game episode for the second model).
+This is interesting and somewhat brings to the discussion in the fandom
+by showing that not one signle factor is predictive of winning either
+title (the whole competititon or Miss Congeniality). I also found
+interesting to look at which competitors were predicted to win their
+seasons by the model despite not having truly won it:Manila Luzon,
+Alaska and Rosé. For example Alaska then moved to participating in the
+competition again in the “All Stars” (a series with competitors that
+have previously participated in RuPaul’s Drag Race) and winning that
+competition. In addition, I have created alluvial plots for each of the
+14 seasons of the show, showing the trajectory of each candidate in an
+efficient representation. The models were somewhat successful but could
+be better. Consideration of another model that is able to account for
+the rarity of the outcome, or inclusion of more data would be useful.
+For example although I extracted data on Twitter following, I was not
+able to obtain that data on all the participants at the time of their
+entry in the show (Twitter was not as popular when the first season
+aired in 2009) and I did not want to reduce my sample size too much. It
+may be that the model could be improved, or that it is not possible to
+predict the winner of either of this titles, as this competition is
+above all else a human adventure that rewards creativity, uniqueness and
+talent.
 
 <!-- Conclusion (.5 pages of text, 15 pts): -->
 <!-- Summary of your question, methods and results -->
 <!-- Additional topics can include: -->
 <!-- Was your analysis successful? Why or why not? -->
 <!-- What would you do if you had more time? -->
-
 <!-- \vspace{-1em} -->
-
-\newpage
-
-
 # References
 
-Data source 1: R package dragracer https://cran.r-project.org/web/packages/dragracer/index.html
+Data source 1: R package dragracer
+<https://cran.r-project.org/web/packages/dragracer/index.html>
 
-Data source 2: No Key No Shade API https://drag-race-api.readme.io/docs`
+Data source 2: No Key No Shade API
+<https://drag-race-api.readme.io/docs>\`
 
-)Data source 3: RuPaul-Predict-A-Looza Tables for all contestant and social media  https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=516773740 and https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=1915800778
+)Data source 3: RuPaul-Predict-A-Looza Tables for all contestant and
+social media
+<https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=516773740>
+and
+<https://docs.google.com/spreadsheets/d/1Sotvl3o7J_ckKUg5sRiZTqNQn3hPqhepBSeOpMTK15Q/edit#gid=1915800778>
 
 <!-- \vspace{-1em} -->
-
-\newpage
-
 # Appendix
 
 ### Data tables before and after wrangling
 
-Below are the top 5 rows of the four input datasets that I used. 
+Below are the top 5 rows of the four input datasets that I used.
 
-```{r echo = FALSE}
-all_social_media <- readRDS("./data/all_social_media.RDS")
-all_contestant <- readRDS("./data/all_contestant.RDS")
-rpdr_contep <- readRDS("./data/rpdr_contep.RDS")
-rpdr_contestants <- readRDS("./data/rpdr_contestants.RDS")
-# head(all_social_media)
-# head(all_contestant)[1:4,]
-# head(rpdr_contep)
-# head(rpdr_contestants)
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Data input 1
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+contestant_id
+</th>
+<th style="text-align:left;">
+datetime
+</th>
+<th style="text-align:right;">
+followers_twitter
+</th>
+<th style="text-align:right;">
+followers_instagram
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0000-00-00 0:00:00
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+2012-02-04 4:07:32
+</td>
+<td style="text-align:right;">
+617
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+2012-02-08 2:36:14
+</td>
+<td style="text-align:right;">
+752
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+2012-03-08 1:00:22
+</td>
+<td style="text-align:right;">
+1463
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+2012-03-13 16:31:52
+</td>
+<td style="text-align:right;">
+1554
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+36
+</td>
+<td style="text-align:left;">
+2012-03-13 16:33:06
+</td>
+<td style="text-align:right;">
+1554
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Data input 2
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+contestant_id
+</th>
+<th style="text-align:right;">
+season_number
+</th>
+<th style="text-align:right;">
+contestant_entrance
+</th>
+<th style="text-align:left;">
+contestant_name
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+hometown_city
+</th>
+<th style="text-align:left;">
+hometown_state
+</th>
+<th style="text-align:right;">
+season_outcome
+</th>
+<th style="text-align:left;">
+handle_instagram
+</th>
+<th style="text-align:left;">
+handle_twitter
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+Shannel
+</td>
+<td style="text-align:right;">
+29
+</td>
+<td style="text-align:left;">
+Las Vegas
+</td>
+<td style="text-align:left;">
+Nevada
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+theofficialshannel
+</td>
+<td style="text-align:left;">
+ShannelOfficial
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+Nina Flowers
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+Bayamon
+</td>
+<td style="text-align:left;">
+Puerto Rico
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+djninaflowers
+</td>
+<td style="text-align:left;">
+DJNinaFlowers
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+Rebecca Glasscock
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+Fort Lauderdale
+</td>
+<td style="text-align:left;">
+Florida
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:left;">
+rebeccaglasscoc
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+Ongina
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+Los Angeles
+</td>
+<td style="text-align:left;">
+California
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+ongina
+</td>
+<td style="text-align:left;">
+ongina
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Data input 3
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:right;">
+rank
+</th>
+<th style="text-align:left;">
+missc
+</th>
+<th style="text-align:left;">
+contestant
+</th>
+<th style="text-align:right;">
+episode
+</th>
+<th style="text-align:left;">
+outcome
+</th>
+<th style="text-align:left;">
+eliminated
+</th>
+<th style="text-align:left;">
+participant
+</th>
+<th style="text-align:left;">
+minichalw
+</th>
+<th style="text-align:right;">
+finale
+</th>
+<th style="text-align:right;">
+penultimate
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+BeBe Zahara Benet
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SAFE
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+Nina Flowers
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+WIN
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Rebecca Glasscock
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+LOW
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Shannel
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SAFE
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Ongina
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+HIGH
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+Jade
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+SAFE
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Data input 4
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:left;">
+contestant
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+dob
+</th>
+<th style="text-align:left;">
+hometown
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+BeBe Zahara Benet
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+1981-03-20
+</td>
+<td style="text-align:left;">
+Minneapolis, Minnesota
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Nina Flowers
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+1974-02-22
+</td>
+<td style="text-align:left;">
+Bayamón, Puerto Rico
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Rebecca Glasscock
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1983-05-25
+</td>
+<td style="text-align:left;">
+Fort Lauderdale, Florida
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Shannel
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1979-07-03
+</td>
+<td style="text-align:left;">
+Las Vegas, Nevada
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Ongina
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1982-01-06
+</td>
+<td style="text-align:left;">
+Los Angeles, California
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Jade
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+1984-11-18
+</td>
+<td style="text-align:left;">
+Chicago, Illinois
+</td>
+</tr>
+</tbody>
+</table>
 
-knitr::kable(head(all_social_media), caption = "Data input 1") %>% kable_styling(latex_options=c("HOLD_position","scale_down")) 
-knitr::kable(head(all_contestant)[1:4,], caption = "Data input 2") %>% kable_styling(latex_options=c("HOLD_position","scale_down")) 
-knitr::kable(head(rpdr_contep), caption = "Data input 3") %>% kable_styling(latex_options=c("HOLD_position","scale_down")) 
-knitr::kable(head(rpdr_contestants), caption = "Data input 4") %>% kable_styling(latex_options = c("HOLD_position","scale_down")) # ""
+Below are the top 5 rows of the clean tidy dataset that I created for my
+analyses.
 
-```
-
-
-Below are the top 5 rows of the clean tidy dataset that I created for my analyses.
-
-```{r echo = FALSE}
-clean_data <- readRDS("./data/clean_data.RDS")
-#head(clean_data)
-knitr::kable(head(clean_data), caption = "Final clean dataset") %>% kable_styling(latex_options=c("HOLD_position","scale_down")) 
-
-clean_data_twitter <- readRDS("./data/clean_data_twitter.RDS")
-knitr::kable(head(clean_data_twitter), caption = "Final clean dataset including twitter data") %>% kable_styling(latex_options=c("HOLD_position","scale_down")) 
-
-```
-
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Final clean dataset
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:left;">
+contestant
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+dob
+</th>
+<th style="text-align:left;">
+hometown
+</th>
+<th style="text-align:left;">
+finale
+</th>
+<th style="text-align:left;">
+snatchgame
+</th>
+<th style="text-align:left;">
+homestate
+</th>
+<th style="text-align:right;">
+rank
+</th>
+<th style="text-align:right;">
+minichalw
+</th>
+<th style="text-align:left;">
+missc
+</th>
+<th style="text-align:right;">
+nwin
+</th>
+<th style="text-align:right;">
+nhighwin
+</th>
+<th style="text-align:right;">
+nbot
+</th>
+<th style="text-align:right;">
+nlowbot
+</th>
+<th style="text-align:right;">
+nsafe
+</th>
+<th style="text-align:left;">
+winner
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+BeBe Zahara Benet
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+1981-03-20
+</td>
+<td style="text-align:left;">
+Minneapolis, Minnesota
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Minnesota
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Nina Flowers
+</td>
+<td style="text-align:right;">
+34
+</td>
+<td style="text-align:left;">
+1974-02-22
+</td>
+<td style="text-align:left;">
+Bayamón, Puerto Rico
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Puerto Rico
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Rebecca Glasscock
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1983-05-25
+</td>
+<td style="text-align:left;">
+Fort Lauderdale, Florida
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Florida
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Shannel
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1979-07-03
+</td>
+<td style="text-align:left;">
+Las Vegas, Nevada
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Nevada
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Ongina
+</td>
+<td style="text-align:right;">
+26
+</td>
+<td style="text-align:left;">
+1982-01-06
+</td>
+<td style="text-align:left;">
+Los Angeles, California
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+California
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S01
+</td>
+<td style="text-align:left;">
+Jade
+</td>
+<td style="text-align:right;">
+32
+</td>
+<td style="text-align:left;">
+1984-11-18
+</td>
+<td style="text-align:left;">
+Chicago, Illinois
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Illinois
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+Final clean dataset including twitter data
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+season
+</th>
+<th style="text-align:left;">
+contestant
+</th>
+<th style="text-align:right;">
+age
+</th>
+<th style="text-align:left;">
+dob
+</th>
+<th style="text-align:left;">
+hometown
+</th>
+<th style="text-align:left;">
+finale
+</th>
+<th style="text-align:left;">
+snatchgame
+</th>
+<th style="text-align:left;">
+homestate
+</th>
+<th style="text-align:right;">
+rank
+</th>
+<th style="text-align:right;">
+minichalw
+</th>
+<th style="text-align:left;">
+missc
+</th>
+<th style="text-align:right;">
+nwin
+</th>
+<th style="text-align:right;">
+nhighwin
+</th>
+<th style="text-align:right;">
+nbot
+</th>
+<th style="text-align:right;">
+nlowbot
+</th>
+<th style="text-align:right;">
+nsafe
+</th>
+<th style="text-align:left;">
+winner
+</th>
+<th style="text-align:right;">
+contestant_entrance
+</th>
+<th style="text-align:right;">
+followers_twitter
+</th>
+<th style="text-align:right;">
+followers_instagram
+</th>
+<th style="text-align:left;">
+datefollower
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+S04
+</td>
+<td style="text-align:left;">
+Phi Phi O’Hara
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+1985-10-10
+</td>
+<td style="text-align:left;">
+Chicago, Illinois
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Illinois
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+1416
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2012-01-31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S05
+</td>
+<td style="text-align:left;">
+Jinkx Monsoon
+</td>
+<td style="text-align:right;">
+24
+</td>
+<td style="text-align:left;">
+1987-09-18
+</td>
+<td style="text-align:left;">
+Seattle, Washington
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+Washington
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+2592
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2013-01-29
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S05
+</td>
+<td style="text-align:left;">
+Alaska
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+1985-03-06
+</td>
+<td style="text-align:left;">
+Pittsburgh, Pennsylvania
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Pennsylvania
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:right;">
+8054
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2013-01-30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S05
+</td>
+<td style="text-align:left;">
+Roxxxy Andrews
+</td>
+<td style="text-align:right;">
+28
+</td>
+<td style="text-align:left;">
+1983-09-23
+</td>
+<td style="text-align:left;">
+Orlando, Florida
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Florida
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+2107
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2013-01-28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S05
+</td>
+<td style="text-align:left;">
+Detox
+</td>
+<td style="text-align:right;">
+27
+</td>
+<td style="text-align:left;">
+1985-06-03
+</td>
+<td style="text-align:left;">
+Los Angeles, California
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+California
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+3
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8852
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2013-01-28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S05
+</td>
+<td style="text-align:left;">
+Coco Montrese
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+1974-07-02
+</td>
+<td style="text-align:left;">
+Las Vegas, Nevada
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+Nevada
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:left;">
+0
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:right;">
+14
+</td>
+<td style="text-align:right;">
+1919
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:left;">
+2013-01-28
+</td>
+</tr>
+</tbody>
+</table>
 
 ### Figures
 
 ### Figure 1A
+
 ![](plots/Figure_1.png)
 
 ### Figure 1B
+
 ![](plots/Figure_1B.png)
 
 ### Figure 1C
+
 ![](plots/Figure_1C.png)
 
 ### Figure 2
+
 ![](./plots/Figure_S1.png)
 
 ### Figure 3
+
 ![](./plots/Figure_S2.png)
 
 ### Figure 4
+
 ![](./plots/Figure_S3.png)
 
 ### Figure 5
+
 ![](./plots/Figure_S4.png)
 
 ### Figure 6
+
 ![](./plots/Figure_S5.png)
 
 ### Figure 7
+
 ![](./plots/Figure_S6.png)
 
 ### Figure 8
+
 ![](./plots/Figure_S7.png)
 
 ### Figure 9
+
 ![](./plots/Figure_S8.png)
 
 ### Figure 10
+
 ![](./plots/Figure_S9.png)
 
 ### Figure 11
+
 ![](./plots/Figure_S10.png)
 
 ### Figure 12
+
 ![](./plots/Figure_S11.png)
 
 ### Figure 13
+
 ![](./plots/Figure_S12.png)
 
 ### Figure 14
+
 ![](./plots/Figure_S13.png)
 
 ### Figure 15
-![](./plots/Figure_S14.png)
 
+![](./plots/Figure_S14.png)
 
 ## Code
 
 ### Load packages
-```{r eval=FALSE, echo=TRUE}
+
+``` r
 ### Load libraries
 #install.packages("dragracer")
 #devtools::install_github("svmiller/dragracer")
@@ -245,10 +1874,11 @@ library(lubridate)
 library(stringr)
 library(ggalluvial)
 library(caret)
-
 ```
+
 ### Load, pull and webscrap data from wrangling
-```{r eval=FALSE, echo=TRUE}
+
+``` r
 ### Load datasets 
 
 ## Data source 1: package dragracer
@@ -288,11 +1918,11 @@ all_social_media <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Sotvl3o7
 all_social_media
 saveRDS(all_contestant, './data/all_contestant.RDS')
 saveRDS(all_social_media, './data/all_social_media.RDS')
-
 ```
-### Data wrangling
-```{r eval=FALSE, echo=TRUE}
 
+### Data wrangling
+
+``` r
 ### Data cleaning and wrangling 
 
 # Extract list of finale participants, snatch game and miss congeniality 
@@ -386,13 +2016,11 @@ head(all_social_media3)
 clean_data
 clean_data_twitter <- full_join(clean_data, all_social_media3, by = "contestant")
 saveRDS(clean_data_twitter %>% rename(datefollower = date) %>% select(-c(season_number, airdate, contestant_id, contestant_name, datetime)) %>% filter(is.na(followers_twitter) == F), './data/clean_data_twitter.RDS')
-
 ```
 
 ### Exploratory data analysis figures
 
-```{r eval=FALSE, echo=TRUE}
-
+``` r
 ## Plots showing data
 clean_data
 clean_data$nhighwin
@@ -445,13 +2073,11 @@ clean_data %>%
        fill = "Homestate") +
   theme_minimal() 
 ggsave("./plots/Figure_1C.png", width = 7, height = 5)
-
 ```
 
 ### Prediction models
 
-```{r eval=FALSE, echo=TRUE}
-
+``` r
 ## Models
 clean_data
 colnames(clean_data)
@@ -523,14 +2149,11 @@ table(prediction_model_win_C)
 clean_data$contestant[prediction_model_win_C == 1]
 
 clean_data$contestant[prediction_model_win_C == 1 & clean_data$winner == FALSE]
-
-
 ```
 
 ### Alluvial Plots
 
-```{r eval=FALSE, echo=TRUE}
-
+``` r
 ### Making cool alluvial graph 
 View(rpdr_contep)
 
@@ -1157,6 +2780,4 @@ ggplot(data = alluvial_data_S14_wide,
 ggsave("./plots/Figure_S14.png", width = 10, height = 4)
 
 #
-
 ```
-
