@@ -5,3 +5,5 @@ navbar:
   left:
     - text: "Introduction"
       href: index.html
+    - text: "Data extraction and wrangling"
+      href: data.html
