@@ -1,8 +1,6 @@
 ---
-title: "Home"
+title: "Introduction"
 ---
-
-# Introduction
 
 This projects aims at investigating the predictive value of outcomes
 from the award-winning TV show RuPaul’s Drag Race. RuPaul’s Drag Race is
